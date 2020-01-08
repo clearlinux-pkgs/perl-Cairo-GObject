@@ -4,14 +4,14 @@
 #
 Name     : perl-Cairo-GObject
 Version  : 1.005
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
-Summary  : Integrate Cairo into the Glib type system
+Summary  : 'Integrate Cairo into the Glib type system'
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: perl-Cairo-GObject-lib = %{version}-%{release}
 Requires: perl-Cairo-GObject-license = %{version}-%{release}
+Requires: perl-Cairo-GObject-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Cairo)
 BuildRequires : perl(ExtUtils::Depends)
@@ -27,22 +27,11 @@ Perl module to integrate Cairo into the Glib type system.
 %package dev
 Summary: dev components for the perl-Cairo-GObject package.
 Group: Development
-Requires: perl-Cairo-GObject-lib = %{version}-%{release}
 Provides: perl-Cairo-GObject-devel = %{version}-%{release}
-Requires: perl-Cairo-GObject = %{version}-%{release}
 Requires: perl-Cairo-GObject = %{version}-%{release}
 
 %description dev
 dev components for the perl-Cairo-GObject package.
-
-
-%package lib
-Summary: lib components for the perl-Cairo-GObject package.
-Group: Libraries
-Requires: perl-Cairo-GObject-license = %{version}-%{release}
-
-%description lib
-lib components for the perl-Cairo-GObject package.
 
 
 %package license
@@ -53,8 +42,18 @@ Group: Default
 license components for the perl-Cairo-GObject package.
 
 
+%package perl
+Summary: perl components for the perl-Cairo-GObject package.
+Group: Default
+Requires: perl-Cairo-GObject = %{version}-%{release}
+
+%description perl
+perl components for the perl-Cairo-GObject package.
+
+
 %prep
 %setup -q -n Cairo-GObject-1.005
+cd %{_builddir}/Cairo-GObject-1.005
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -79,7 +78,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Cairo-GObject
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Cairo-GObject/LICENSE
+cp %{_builddir}/Cairo-GObject-1.005/LICENSE %{buildroot}/usr/share/package-licenses/perl-Cairo-GObject/4213aab08e5ace424e0764722e3c4ec2da3151f9
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -92,17 +91,17 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Cairo/GObject.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/Cairo/GObject/Install/Files.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Cairo::GObject.3
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/Cairo/GObject/GObject.so
-
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Cairo-GObject/LICENSE
+/usr/share/package-licenses/perl-Cairo-GObject/4213aab08e5ace424e0764722e3c4ec2da3151f9
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Cairo/GObject.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Cairo/GObject/Install/Files.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Cairo/GObject/GObject.so
