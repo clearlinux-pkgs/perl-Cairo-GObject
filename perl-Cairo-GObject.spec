@@ -4,7 +4,7 @@
 #
 Name     : perl-Cairo-GObject
 Version  : 1.005
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
 Summary  : 'Integrate Cairo into the Glib type system'
@@ -102,6 +102,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Cairo/GObject.pm
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Cairo/GObject/Install/Files.pm
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/Cairo/GObject/GObject.so
+/usr/lib/perl5/*
