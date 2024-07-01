@@ -7,7 +7,7 @@
 #
 Name     : perl-Cairo-GObject
 Version  : 1.005
-Release  : 17
+Release  : 18
 URL      : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/X/XA/XAOC/Cairo-GObject-1.005.tar.gz
 Summary  : 'Integrate Cairo into the Glib type system'
